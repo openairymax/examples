@@ -9,38 +9,17 @@
 [![License](https://img.shields.io/badge/license-AGPL--3.0+Apache--2.0-4a90d9)](LICENSE)
 [![Branch](https://img.shields.io/badge/branch-feature%2Fofficial--hubs--01-6f7b8e)](https://atomgit.com/openairymax/examples)
 
+**Repository:** `git@atomgit.com:openairymax/examples.git` · **Branch:** `feature/official-hubs-01`
+
 ---
 
-## Module Positioning
+## Overview
 
-`ecosystem/examples/` is the **official example Agent collection** of the Airymax AI Agent Runtime Platform. Every example is a self-contained, runnable project with its own `README.md`, `config.yaml` and `*.agent.yaml` definitions, demonstrating one concrete capability of the Airymax SDK and AgentRT runtime.
+`ecosystem/examples/` is the **official example Agent collection** of the Airymax AI Agent Runtime Platform. Every example is a self-contained, runnable project with its own `README.md`, `config.yaml` and `*.agent.yaml` definitions, demonstrating one concrete capability of the Airymax SDK and AgentRT runtime. Together the 10 examples form a graded learning path from a 5-minute QuickStart to advanced multi-agent orchestration and A2A communication.
 
-The collection is organized as a graded learning path: each example declares a difficulty level (Beginner / Intermediate / Advanced) and the Airymax capability it showcases, so developers can pick the right entry point and progress in order.
+The collection covers the full capability surface: minimal agent setup, custom tools, MCP protocol integration, the Plugin SDK (all four plugin types), the code-review skill, the prompt tuning framework, a custom MCP tool server, multi-agent collaboration with memory persistence, a full customer-support pipeline with hooks, four multi-agent collaboration modes (Sequential / Parallel / Debate / Hierarchical), and Agent-to-Agent protocol communication.
 
-## Example Catalog
-
-| Example | Difficulty | Capability showcased |
-|---------|:----------:|----------------------|
-| [`hello-agent`](hello-agent/) | Beginner | 5-minute QuickStart: minimal runnable Agent |
-| [`weather-agent`](weather-agent/) | Beginner | Custom tools + MCP protocol integration |
-| [`plugin-demo`](plugin-demo/) | Beginner | Plugin SDK — all four plugin types (Agent / Tool / Hook / Skill) |
-| [`code-review-agent`](code-review-agent/) | Intermediate | Code review Skill + security scanning |
-| [`prompt-tuner-demo`](prompt-tuner-demo/) | Intermediate | Prompt tuning framework usage with evaluation datasets |
-| [`mcp-tool-server`](mcp-tool-server/) | Intermediate | Custom MCP tool server |
-| [`research-agent`](research-agent/) | Intermediate | Multi-agent collaboration + memory persistence |
-| [`customer-support-agent`](customer-support-agent/) | Advanced | Full pipeline + Hook system |
-| [`multi-agent-debate`](multi-agent-debate/) | Advanced | 4 multi-agent collaboration modes (Sequential / Parallel / Debate / Hierarchical) |
-| [`a2a-chat`](a2a-chat/) | Advanced | A2A (Agent-to-Agent) protocol inter-agent communication |
-
-## Learning Path
-
-```
-Beginner     hello-agent → weather-agent → plugin-demo
-                ↓
-Intermediate code-review-agent → prompt-tuner-demo → mcp-tool-server → research-agent
-                ↓
-Advanced     customer-support-agent → multi-agent-debate → a2a-chat
-```
+Within the ecosystem layer, `examples/` is the **topmost downstream consumer**: it imports the Airymax SDK and runtime at runtime (no vendored code), references prompt templates from `ecosystem/prompts`, skill definitions from `ecosystem/skills`, and assumes runtime configuration conforms to `ecosystem/manager/configs/agentrt.yaml`. It is consumed downstream by agent developers (as reference implementations and starting templates), workshops/onboarding (as graded lab material), and CI/docs generation.
 
 ## Directory Structure
 
@@ -110,9 +89,34 @@ examples/
 └── README.md                          # This file
 ```
 
-## Upstream / Downstream Dependencies
+## Core Components — Example Catalog
 
-### Upstream
+| # | Example | Difficulty | Capability showcased |
+|---|---------|:----------:|----------------------|
+| 1 | [`hello-agent`](hello-agent/) | Beginner | 5-minute QuickStart: minimal runnable Agent |
+| 2 | [`weather-agent`](weather-agent/) | Beginner | Custom tools + MCP protocol integration |
+| 3 | [`plugin-demo`](plugin-demo/) | Beginner | Plugin SDK — all four plugin types (Agent / Tool / Hook / Skill) |
+| 4 | [`code-review-agent`](code-review-agent/) | Intermediate | Code review Skill + security scanning |
+| 5 | [`prompt-tuner-demo`](prompt-tuner-demo/) | Intermediate | Prompt tuning framework usage with evaluation datasets |
+| 6 | [`mcp-tool-server`](mcp-tool-server/) | Intermediate | Custom MCP tool server (calculator + file_reader) |
+| 7 | [`research-agent`](research-agent/) | Intermediate | Multi-agent collaboration + memory persistence |
+| 8 | [`customer-support-agent`](customer-support-agent/) | Advanced | Full pipeline + Hook system |
+| 9 | [`multi-agent-debate`](multi-agent-debate/) | Advanced | 4 multi-agent collaboration modes (Sequential / Parallel / Debate / Hierarchical) |
+| 10 | [`a2a-chat`](a2a-chat/) | Advanced | A2A (Agent-to-Agent) protocol inter-agent communication |
+
+### Learning Path
+
+```
+Beginner     hello-agent → weather-agent → plugin-demo
+                ↓
+Intermediate code-review-agent → prompt-tuner-demo → mcp-tool-server → research-agent
+                ↓
+Advanced     customer-support-agent → multi-agent-debate → a2a-chat
+```
+
+Each example directory has its own `README.md` explaining the demonstrated concept, the directory layout and extension suggestions. Start from [`hello-agent/README.md`](hello-agent/README.md) for the absolute minimum.
+
+## Upstream Dependencies
 
 `examples/` consumes the Airymax SDK and runtime as its build/run dependency. None of the examples vendor SDK code — they import it at runtime:
 
@@ -125,7 +129,7 @@ examples/
 | `ecosystem/skills` | `code-review-agent` and similar examples consume official skill definitions |
 | `ecosystem/manager` | Examples assume runtime configuration conforms to `manager/configs/agentrt.yaml` |
 
-### Downstream
+## Downstream Consumers
 
 | Consumer | How it uses `examples/` |
 |----------|--------------------------|
@@ -133,7 +137,7 @@ examples/
 | **Workshops / onboarding** | Used as graded lab material in the learning path above |
 | **CI / docs generation** | Examples are referenced by documentation and may be smoke-tested in CI |
 
-## Usage
+## Usage / Quick Start
 
 Each example is self-contained and runnable with the AgentRT CLI.
 
@@ -178,9 +182,19 @@ agentrt serve --agent agents/chat_agent_b.agent.yaml --port 8002 &
 agentrt run --config config.yaml
 ```
 
-### Per-example docs
+## Build
 
-Every example directory has its own `README.md` that explains the demonstrated concept, the directory layout and extension suggestions. Start from [`hello-agent/README.md`](hello-agent/README.md) for the absolute minimum.
+`examples/` ships configuration and Python source only — there is no compiled artifact. The examples are executed by the AgentRT runtime, which is installed separately:
+
+```bash
+# Install the runtime + SDK (provides the `agentrt` CLI)
+pip install agentrt
+
+# Run any example (no build step required)
+cd hello-agent && agentrt run --config config.yaml
+```
+
+CI is defined in `.github/workflows/ci.yml` and smoke-tests the example configurations on every push.
 
 ## Branch Strategy
 
@@ -190,4 +204,4 @@ This leaf repository is on the **`feature/official-hubs-01`** branch (active dev
 
 Dual-licensed under **AGPL v3 + Apache 2.0** (SPDX: `AGPL-3.0-or-later OR Apache-2.0`). See [LICENSE](LICENSE) for the full text.
 
-Copyright (c) 2025-2026 **SPHARX Ltd.** All Rights Reserved.
+Copyright (c) 2025-2026 SPHARX Ltd. All Rights Reserved.
