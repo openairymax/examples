@@ -1,7 +1,7 @@
 # AgentPlugin 示例 — 自定义 RAG Agent
 # 演示如何通过 AgentPlugin 定义 Agent 的推理策略和行为模式
 
-from agentos.plugin_types import AgentPlugin
+from agentrt.plugin_types import AgentPlugin
 
 
 class MyCustomAgent(AgentPlugin):

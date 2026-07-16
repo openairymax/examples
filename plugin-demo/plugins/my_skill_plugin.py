@@ -1,7 +1,7 @@
 # SkillPlugin 示例 — 代码审查技能
 # 演示如何通过 SkillPlugin 封装可复用的多步骤技能组合
 
-from agentos.plugin_types import SkillPlugin
+from agentrt.plugin_types import SkillPlugin
 
 
 class CodeReviewSkill(SkillPlugin):

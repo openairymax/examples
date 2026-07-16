@@ -5,7 +5,7 @@ import argparse
 import json
 from pathlib import Path
 
-from agentos.evaluation import PromptEvaluator, AutoScorer
+from agentrt.evaluation import PromptEvaluator, AutoScorer
 
 
 # 待评估的 Prompt 模板

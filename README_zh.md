@@ -122,7 +122,7 @@ examples/
 
 | 依赖 | 用途 |
 |------|------|
-| `sdk-python`（`agentrt` / `agentos` 包） | 每个示例 Python 代码（工具、Hook、技能、插件）所使用的主 SDK |
+| `sdk-python`（`agentrt` / `agentrt` 包） | 每个示例 Python 代码（工具、Hook、技能、插件）所使用的主 SDK |
 | `sdk-go` / `sdk-rust` / `sdk-typescript` | 等价 SDK，覆盖同一能力面；示例在概念上与语言无关 |
 | AgentRT 运行时 | 托管网关，执行 CoreLoopThree（认知 → 规划 → 执行 → 反思）并提供 Agent 服务 |
 | `ecosystem/prompts` | 部分示例引用官方提示词注册表中的模板 |

@@ -49,7 +49,7 @@ python -m tools.weather_tool
 所有 AgentRT 工具都继承自 `ToolPlugin`，需要实现两个核心方法：
 
 ```python
-from agentos.plugin_types import ToolPlugin, ToolMetadata, ToolParameter
+from agentrt.plugin_types import ToolPlugin, ToolMetadata, ToolParameter
 
 class WeatherTool(ToolPlugin):
     def get_metadata(self) -> ToolMetadata:

@@ -48,7 +48,7 @@ python -m plugins.my_tool_plugin
 AgentPlugin 允许你定义 Agent 的推理策略和行为模式。通过重写 `run` 方法，可以实现自定义的思考-行动循环。
 
 ```python
-from agentos.plugin_types import AgentPlugin
+from agentrt.plugin_types import AgentPlugin
 
 class MyAgent(AgentPlugin):
     async def run(self, task: str) -> str:
@@ -63,7 +63,7 @@ class MyAgent(AgentPlugin):
 ToolPlugin 为 Agent 提供可调用的外部工具。每个工具需要声明参数 Schema，Agent 会在需要时自动调用。
 
 ```python
-from agentos.plugin_types import ToolPlugin
+from agentrt.plugin_types import ToolPlugin
 
 class MyTool(ToolPlugin):
     name = "my_tool"
@@ -82,7 +82,7 @@ class MyTool(ToolPlugin):
 HookPlugin 在 Agent 的关键生命周期节点注入自定义逻辑，如请求前后的日志记录、权限校验等。
 
 ```python
-from agentos.plugin_types import HookPlugin
+from agentrt.plugin_types import HookPlugin
 
 class MyHook(HookPlugin):
     async def on_before_invoke(self, context: dict) -> dict:
@@ -101,7 +101,7 @@ class MyHook(HookPlugin):
 SkillPlugin 封装一组工具和提示词为可复用的技能组合，Agent 可以按需激活。
 
 ```python
-from agentos.plugin_types import SkillPlugin
+from agentrt.plugin_types import SkillPlugin
 
 class MySkill(SkillPlugin):
     name = "my_skill"

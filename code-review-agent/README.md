@@ -63,7 +63,7 @@ python -m skills.code_review_skill
 ### 2. SkillPlugin 核心方法
 
 ```python
-from agentos.plugin_types import SkillPlugin, SkillDefinition
+from agentrt.plugin_types import SkillPlugin, SkillDefinition
 
 class CodeReviewSkill(SkillPlugin):
     def get_definition(self) -> SkillDefinition:

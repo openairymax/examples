@@ -71,7 +71,7 @@ Agent 生命周期：
 ### 2. HookPlugin 开发
 
 ```python
-from agentos.plugin_types import HookPlugin
+from agentrt.plugin_types import HookPlugin
 
 class SecurityReminderHook(HookPlugin):
     """安全提醒 Hook：在工具调用前检查安全性。"""

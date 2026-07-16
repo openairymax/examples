@@ -1,7 +1,7 @@
 # ToolPlugin 示例 — 天气查询工具
 # 演示如何通过 ToolPlugin 为 Agent 提供可调用的外部工具
 
-from agentos.plugin_types import ToolPlugin
+from agentrt.plugin_types import ToolPlugin
 
 
 class WeatherTool(ToolPlugin):

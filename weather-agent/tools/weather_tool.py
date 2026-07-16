@@ -11,12 +11,12 @@ from typing import Any, Dict
 import sys as _sys
 from pathlib import Path as _Path
 
-# 确保 agentos 包可导入（开发模式）
+# 确保 agentrt 包可导入（开发模式）
 _sdk_python = _Path(__file__).resolve().parents[3] / "sdk" / "python"
 if str(_sdk_python) not in _sys.path:
     _sys.path.insert(0, str(_sdk_python))
 
-from agentos.plugin_types import ToolPlugin, ToolMetadata, ToolParameter
+from agentrt.plugin_types import ToolPlugin, ToolMetadata, ToolParameter
 
 
 # 模拟天气数据库

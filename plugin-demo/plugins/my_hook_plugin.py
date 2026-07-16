@@ -1,7 +1,7 @@
 # HookPlugin 示例 — 日志与权限钩子
 # 演示如何通过 HookPlugin 在 Agent 生命周期中注入自定义逻辑
 
-from agentos.plugin_types import HookPlugin
+from agentrt.plugin_types import HookPlugin
 
 
 class LoggingHook(HookPlugin):

@@ -122,7 +122,7 @@ Each example directory has its own `README.md` explaining the demonstrated conce
 
 | Dependency | Purpose |
 |------------|---------|
-| `sdk-python` (`agentrt` / `agentos` package) | Primary SDK used by every example's Python code (tools, hooks, skills, plugins) |
+| `sdk-python` (`agentrt` / `agentrt` package) | Primary SDK used by every example's Python code (tools, hooks, skills, plugins) |
 | `sdk-go` / `sdk-rust` / `sdk-typescript` | Equivalent SDKs for the same surface area; examples are language-agnostic in concept |
 | AgentRT runtime | Hosts the gateway, executes the CoreLoopThree (Cognition → Planning → Execution → Reflection) and serves the agents |
 | `ecosystem/prompts` | Some examples reference prompt templates from the official prompt registry |
