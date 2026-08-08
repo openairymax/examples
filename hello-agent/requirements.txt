@@ -1,0 +1,9 @@
+# hello-agent 运行依赖
+#
+# 开发模式（本仓库内）可直接运行，main.py 会自动把
+# ../../agents、../../openlab、../../../sdk/sdk-python 加入 sys.path，
+# 无需 pip 安装。
+#
+# 独立部署时按需安装以下包（以仓库内 pyproject.toml 的 project.name 为准）：
+airymax-agents>=0.1.1
+openlab>=0.1.1

@@ -1,0 +1,12 @@
+# code-review-agent 运行依赖
+#
+# 开发模式（本仓库内）可直接运行，main.py 会自动把
+# ../../skills 与 ../../../sdk/sdk-python 加入 sys.path，无需 pip 安装。
+#
+# 注意：agentrt SDK（ecosystem/sdk/sdk-python）为本地依赖，未发布到 PyPI；
+# 独立部署时需配置 PYTHONPATH 指向 ecosystem/sdk/sdk-python，
+# 或按仓库内 sdk/sdk-python 的 pyproject.toml 以 editable 方式安装。
+#
+# requests：code_review 技能本地静态分析默认不需要；仅当扩展为经
+# Gateway 调用远程审查服务时才需要。
+requests>=2.31.0
