@@ -1,0 +1,35 @@
+# SPDX-FileCopyrightText: 2025-2026 SPHARX Ltd.
+# SPDX-License-Identifier: AGPL-3.0-or-later OR Apache-2.0
+# maths 技能指南（maths-toolkit 包附带的出厂技能）
+
+name: maths
+display_name: Maths Computation
+category: skill
+version: 0.1.4
+toolkit: maths-toolkit
+
+description: >-
+  指导 Agent 在需要数学计算时使用 maths 工具（maths.* 命名空间），
+  将数学计算从 LLM 推理中剥离，节省 90%~98% 数学相关 Token。
+
+usage_guidance: |-
+  1. 简单表达式求值（四则运算、幂、阶乘、初等函数、统计）
+     使用 maths.eval / maths.stats（毫秒级，纯 C 快速路径）。
+  2. 方程求解（线性/二次/方程组）、符号推导
+     使用 maths.solve。
+  3. 微积分（求导/积分/极限）与化简展开
+     使用 maths.calculus。
+  4. 矩阵运算（行列式/逆/转置/乘法/特征值）
+     使用 maths.matrix。
+  5. 单位换算
+     使用 maths.units。
+  6. Python 符号计算后端不可用时（降级状态），仅支持 1（C 快速路径），
+     复杂数学应提示用户安装 maths-toolkit（sh install.sh --with-maths）。
+
+tool_map:
+  maths.eval: 数值表达式求值（C 快速路径）
+  maths.stats: 描述性统计（C 快速路径）
+  maths.solve: 方程/方程组求解（Python 符号后端）
+  maths.calculus: 求导/积分/极限/化简/展开（Python 符号后端）
+  maths.matrix: 矩阵运算（Python 符号后端）
+  maths.units: 单位换算（Python 符号后端）
