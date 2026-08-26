@@ -32,6 +32,10 @@ components:
     skip_by_default: [einsteinpy]
 
 capabilities:
+  - numerical        # 数值计算（MCP-Mathematics 52 函数 + AST 安全求值）
+  - units            # 单位换算（MCP-Mathematics 158 种，15 类量纲）
+  - finance          # 金融计算（百分比/税率/利息/贷款/折扣/加价）
+  - number_theory    # 数论（素数判定/质因数分解）
   - solve            # 方程/方程组求解
   - differentiate    # 求导
   - integrate        # 定/不定积分
@@ -40,8 +44,6 @@ capabilities:
   - factor           # 因式分解
   - expand           # 展开
   - matrix           # 矩阵运算（det/inv/transpose/multiply/eigen）
-  - units            # 单位换算（7 类常用量纲）
-  - numerical        # 数值计算（MCP-Mathematics 52 函数 + 金融）
 
 skill_ref: skills/maths.yaml   # 可选技能指南（指导模型何时使用数学工具）
 

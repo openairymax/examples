@@ -75,16 +75,20 @@ fi
 PYTHON_BIN="$VENV_DIR/bin/python3"
 PIP_BIN="$VENV_DIR/bin/pip"
 
-# ─── 安装 Python 依赖（跳过 einsteinpy，节省空间） ───────────────────────
-echo "[INFO] 安装数学计算依赖（sympy + mcp-mathematics）..."
-"$PIP_BIN" install --quiet --upgrade sympy mcp-mathematics
+# ─── 安装 Python 依赖（跳过 einsteinpy，节省空间；清华源镜像） ──────────
+# 优先使用清华 PyPI 镜像（国内网络稳定），可通过 AIRY_PIP_INDEX 覆盖。
+PIP_INDEX="${AIRY_PIP_INDEX:-https://pypi.tuna.tsinghua.edu.cn/simple}"
+PIP_OPTS="--quiet --upgrade -i $PIP_INDEX"
+
+echo "[INFO] 安装数学计算依赖（sympy + mcp-mathematics，镜像: $PIP_INDEX）..."
+"$PIP_BIN" install $PIP_OPTS sympy mcp-mathematics
 if [ $? -ne 0 ]; then
     echo "[FAIL] pip 安装失败（网络或依赖问题）"
     exit 1
 fi
 if [ "$WITH_EINSTEINPY" = "1" ]; then
     echo "[INFO] 安装 einsteinpy（广义相对论计算）..."
-    "$PIP_BIN" install --quiet einsteinpy
+    "$PIP_BIN" install $PIP_OPTS einsteinpy
 fi
 
 # ─── 部署后端 worker ─────────────────────────────────────────────────────
