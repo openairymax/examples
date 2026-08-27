@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# AgentRT OpenLab: ecommerce application launcher
+# AgentRT Airymax: ecommerce application launcher
 # Usage: ./run.sh [options]
 #
 # Copyright (c) 2026 SPHARX. All Rights Reserved.

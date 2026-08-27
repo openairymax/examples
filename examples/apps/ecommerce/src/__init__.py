@@ -1,1 +1,1 @@
-# ecosystem/openlab/app/ecommerce/src  package
+# ecosystem/markets/examples/apps/ecommerce/src  package

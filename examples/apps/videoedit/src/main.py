@@ -5,7 +5,7 @@
 Video Editing Platform Main Application
 ======================================
 
-This module provides the main FastAPI application for the OpenLab Video Editing
+This module provides the main FastAPI application for the Airymax Video Editing
 platform. It implements RESTful API endpoints for video processing operations
 including import, export, trimming, merging, effects, and format conversion.
 
@@ -171,8 +171,8 @@ class VideoEditApp:
             logger.info("Video editing application shutting down")
 
         self.app = FastAPI(
-            title="OpenLab Video Editing Platform",
-            description="A comprehensive video editing solution for the OpenLab marketplace",
+            title="Airymax Video Editing Platform",
+            description="A comprehensive video editing solution for the Airymax marketplace",
             version="1.0.0",
             lifespan=lifespan
         )
@@ -198,7 +198,7 @@ class VideoEditApp:
         async def root():
             """Root endpoint."""
             return {
-                "service": "openlab Video Editing Platform",
+                "service": "Airymax Video Editing Platform",
                 "version": "1.0.0",
                 "status": "operational"
             }
@@ -665,7 +665,7 @@ def main():
     import argparse
 
     parser = argparse.ArgumentParser(
-        description="openlab Video Editing Platform")
+        description="Airymax Video Editing Platform")
     parser.add_argument("--manager", "-c", default="manager.yaml",
                         help="Path to configuration file")
     parser.add_argument("--host", "-h", default=None, help="Server host")

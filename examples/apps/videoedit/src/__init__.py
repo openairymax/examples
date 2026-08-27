@@ -1,1 +1,1 @@
-# ecosystem/openlab/app/videoedit/src  package
+# ecosystem/markets/examples/apps/videoedit/src  package

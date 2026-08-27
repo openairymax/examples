@@ -1,7 +1,7 @@
 {
   "name": "ecommerce",
   "version": "0.1.1",
-  "description": "E-commerce Platform for openlab Marketplace",
+  "description": "E-commerce Platform for Airymax Marketplace",
   "author": "SPHARX Ltd. - Airymax Team",
   "license": "AGPL-3.0-or-later OR Apache-2.0",
   "entry_point": "src.main:main",

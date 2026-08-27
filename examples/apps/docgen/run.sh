@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# AgentRT OpenLab: docgen application launcher
+# AgentRT Airymax: docgen application launcher
 # Usage: ./run.sh [options]
 #
 # Copyright (c) 2026 SPHARX. All Rights Reserved.

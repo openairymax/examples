@@ -5,7 +5,7 @@
 Agent Contract Validator
 ========================
 
-This module provides validation for Agent contracts in the openlab Market.
+This module provides validation for Agent contracts in the Airymax Marketplace.
 It validates agent contracts against the JSON schema defined in schema.json.
 
 Features:
@@ -97,7 +97,7 @@ class ValidationResult:
 
 class AgentContractValidator:
     """
-    Validator for Agent contracts in the openlab Market.
+    Validator for Agent contracts in the Airymax Marketplace.
     
     This class provides comprehensive validation for agent contracts,
     including schema validation, semantic validation, and custom business
@@ -386,7 +386,7 @@ def main():
     import argparse
     
     parser = argparse.ArgumentParser(
-        description="Validate Agent contracts for openlab Market"
+        description="Validate Agent contracts for Airymax Marketplace"
     )
     parser.add_argument(
         "contract_file",

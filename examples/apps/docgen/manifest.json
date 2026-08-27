@@ -1,7 +1,7 @@
 {
   "name": "docgen",
   "version": "0.1.1",
-  "description": "Documentation Generator for openlab Projects",
+  "description": "Documentation Generator for Airymax Projects",
   "author": "SPHARX Ltd. - Airymax Team",
   "license": "MIT",
   "entry_point": "src.main:main",

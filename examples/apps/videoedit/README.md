@@ -1,6 +1,6 @@
 # VideoEdit — 智能视频编辑应用
 
-**模块路径**: `ecosystem/openlab/app/videoedit/`
+**模块路径**: `ecosystem/markets/examples/apps/videoedit/`
 **版本**: v0.1.1
 
 > **Status**: 本模块作为 AgentRT 的正式组成部分，API 持续演进中。本模块通过 JSON-RPC 2.0 协议与 AgentRT 核心运行时集成。

@@ -1,6 +1,6 @@
 # Copyright (c) 2026 SPHARX. All Rights Reserved.
 """
-Integration tests for contract consistency: OpenLab Markets ↔ market_d.
+Integration tests for contract consistency: Airymax Marketplace ↔ market_d.
 
 Tests cover:
   - T1: AgentInfo dataclass ↔ C struct agent_info_t field alignment

@@ -1,13 +1,13 @@
 # Applications — 智能应用集合
 
-**模块路径**: `ecosystem/openlab/app/`
+**模块路径**: `ecosystem/markets/examples/apps/`
 **版本**: v0.1.1
 
 > **Status**: 本模块作为 AgentRT 的正式组成部分，API 持续演进中。各应用通过 JSON-RPC 2.0 协议与 AgentRT 核心运行时集成。
 
 ## 概述
 
-Applications 是 OpenLab 生态系统中的官方智能应用集合，涵盖文档生成、电商运营、学术研究和视频编辑四大领域。所有应用基于 AgentRT 平台开发，使用统一的 JSON-RPC 2.0 协议与后端服务通信，可独立部署和扩展。
+Applications 是 Airymax 生态系统中的官方智能应用集合，涵盖文档生成、电商运营、学术研究和视频编辑四大领域。所有应用基于 AgentRT 平台开发，使用统一的 JSON-RPC 2.0 协议与后端服务通信，可独立部署和扩展。
 
 ## 目录结构
 

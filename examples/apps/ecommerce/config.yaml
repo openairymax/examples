@@ -198,9 +198,9 @@ search:
 
 # SEO Configuration
 seo:
-  site_name: "openlab Marketplace"
-  site_description: "Modern e-commerce platform for openlab"
-  site_keywords: "ecommerce, marketplace, openlab, products"
+  site_name: "Airymax Marketplace"
+  site_description: "Modern e-commerce platform for Airymax"
+  site_keywords: "ecommerce, marketplace, airymax, products"
   default_meta_image: "/static/images/og-image.jpg"
   enable_sitemap: true
   sitemap_url: "/sitemap.xml"

@@ -5,7 +5,7 @@
 Video Editing Pipeline Module
 =============================
 
-This module provides the core video editing pipeline for the openlab Video Editing
+This module provides the core video editing pipeline for the Airymax Video Editing
 platform. It handles video processing operations including trimming, merging,
 effects application, format conversion, and audio processing.
 

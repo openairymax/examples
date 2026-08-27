@@ -1,6 +1,6 @@
 # Research — 智能研究助手应用
 
-**模块路径**: `ecosystem/openlab/app/research/`
+**模块路径**: `ecosystem/markets/examples/apps/research/`
 **版本**: v0.1.1
 
 > **Status**: 本模块作为 AgentRT 的正式组成部分，API 持续演进中。当前为规划阶段，源代码尚未实现。
@@ -56,7 +56,7 @@ research/
 
 ## 依赖关系
 
-- **核心依赖**: AgentRT OpenLab Core, FastAPI, Pydantic
+- **核心依赖**: AgentRT Airymax Core, FastAPI, Pydantic
 - **可选依赖**: 各种学术数据库 API 客户端
 
 ---

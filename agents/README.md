@@ -20,21 +20,28 @@ package）的安装、移除、列举与契约校验逻辑，使 Agent 可以作
 ```
 agents/
 ├── __init__.py              # 包入口
-├── contracts/               # Agent 契约（JSON Schema + 校验器）
-│   ├── schema.json          # Agent 契约 Schema（权威）
+├── contracts/               # Agent 分发包元数据契约（JSON Schema + 校验器）
+│   ├── schema.json          # 分发包元数据 Schema（仅约束分发/安装层）
 │   ├── validator.py         # 契约校验器（AgentContractValidator）
-│   └── example_contract.json # 示例契约
+│   └── example_contract.json # 示例分发包契约
 └── installer/               # 安装器
     ├── cli.py               # CLI 入口（install/list/remove）
     └── core.py              # 安装核心逻辑
 ```
 
+> **契约 SSoT 分工**：本目录的 `schema.json` 仅约束 Agent **分发包元数据**
+> （entry_point / config_schema / dependencies / resources 等分发层字段）。
+> Agent 的**运行时能力契约**（agent_id / role / capabilities 含 input/output
+> schema / models / required_permissions / cost_profile / trust_metrics）
+> 以 `ecosystem/agents/shared/contracts/agent.schema.json` 为唯一权威，
+> 安装校验时两者并用：先验分发包元数据，再验运行时契约。
+
 ## 契约校验
 
-`contracts/schema.json` 定义 Agent 分发包必须满足的字段（name、version、
-description、capabilities、interface、permissions 等）；`validator.py` 的
-`AgentContractValidator` 在安装前校验契约合规性，拒绝缺失必填字段或非法
-权限范围的包。
+`contracts/schema.json` 定义 Agent 分发包必须满足的元数据字段（agent_id、
+agent_type、version、capabilities、description、config_schema、
+entry_point 等）；`validator.py` 的 `AgentContractValidator` 在安装前校验
+契约合规性，拒绝缺失必填字段或非法权限范围的包。
 
 ## 安装器
 

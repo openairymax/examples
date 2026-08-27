@@ -1,14 +1,14 @@
 # Copyright (c) 2026 SPHARX. All Rights Reserved.
 """
-AgentRT OpenLab: Contract Consistency Auditor
+AgentRT Airymax: Contract Consistency Auditor
 
-Audits OpenLab Markets API endpoints against market_service.h definitions
+Audits Airymax Marketplace API endpoints against market_service.h definitions
 to ensure field names, data types, and error codes are consistent across
 the C daemon and Python client layers.
 
 Usage:
-    python -m ecosystem.openlab.markets.client.contract_audit [--report]
-    python -m ecosystem.openlab.markets.client.contract_audit --fix
+    python -m ecosystem.markets.client.contract_audit [--report]
+    python -m ecosystem.markets.client.contract_audit --fix
 """
 
 from __future__ import annotations
@@ -87,7 +87,7 @@ class AuditReport:
 
 
 class ContractAuditor:
-    """Auditor that validates OpenLab Markets ↔ market_d contract consistency.
+    """Auditor that validates Airymax Marketplace ↔ market_d contract consistency.
 
     Checks performed:
       A1: agent_info_t field alignment (C struct ↔ Python dataclass)

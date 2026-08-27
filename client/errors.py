@@ -1,9 +1,9 @@
 # Copyright (c) 2026 SPHARX. All Rights Reserved.
 """
-AgentRT OpenLab: Market Error Mapping
+AgentRT Airymax: Market Error Mapping
 
 Maps market_d daemon error codes (from market_service.h / main.c) to
-Python exception classes for clean error handling in OpenLab Markets.
+Python exception classes for clean error handling in Airymax Marketplace.
 
 Error code reference from agentrt/daemons/market_d/src/main.c:
   - MARKET_ERR_INVALID_PARAM   = AGENTRT_ERR_INVALID_PARAM

@@ -8,7 +8,7 @@
 
 运行方式::
 
-    cd airymaxhub/ecosystem/openlab
+    cd airymaxhub/ecosystem/agents
     python3 examples/minimal/02_two_agents.py
 
 Mock 模式自动启用；设置 OPENAI_API_KEY 即切真实 LLM。

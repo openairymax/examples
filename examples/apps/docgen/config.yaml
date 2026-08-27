@@ -35,7 +35,7 @@ markdown_extensions:
 
 # Template Settings
 template_variables:
-  project_name: "openlab Documentation"
+  project_name: "Airymax Documentation"
   version: "0.1.1"
   author: "Spharx AgentRT Team"
   generated_date: "{{ current_date }}"

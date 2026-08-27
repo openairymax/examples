@@ -1,6 +1,6 @@
 """hello-agent — 5 分钟快速上手示例
 
-创建 openlab AgentContext，实例化 airymax_agents 的 CodingAgent，
+创建 orchestration AgentContext，实例化 airymax_agents 的 CodingAgent，
 分配一个简单编码任务并打印执行结果。
 
 运行方式::
@@ -25,17 +25,16 @@ import sys
 from pathlib import Path
 
 # 开发模式下把相关包根目录加入 sys.path（安装版可省略）：
-#   ../../agents/   使 `import airymax_agents` 可用
-#   ../../openlab/  使 `import openlab` 可用
+#   ../../agents/   使 `import airymax_agents` / `import orchestration` 可用
 #   ../../../sdk/sdk-python/  使 `import agentrt` 可用
 HERE = Path(__file__).resolve().parent
 ECOSYSTEM_ROOT = HERE.parent.parent
 SDK_PYTHON_ROOT = ECOSYSTEM_ROOT.parent / "sdk" / "sdk-python"
-for _root in (ECOSYSTEM_ROOT / "agents", ECOSYSTEM_ROOT / "openlab", SDK_PYTHON_ROOT):
+for _root in (ECOSYSTEM_ROOT / "agents", SDK_PYTHON_ROOT):
     sys.path.insert(0, str(_root))
 
 from airymax_agents import get_agent, list_agents  # noqa: E402
-from openlab.core.agent import AgentContext  # noqa: E402
+from orchestration.core.agent import AgentContext  # noqa: E402
 
 
 def _maybe_build_syscall_proxy():
@@ -66,7 +65,7 @@ async def main() -> None:
     print(f"\n[agent] id={agent.agent_id} role={agent.contract.get('role')}")
     print(f"[agent] syscall_proxy={'on' if syscall_proxy is not None else 'off'}")
 
-    # 2. 创建 openlab AgentContext 并分配任务
+    # 2. 创建 AgentContext 并分配任务
     task = "用 Python 编写一个 hello_world 函数，并给出调用示例。"
     ctx = AgentContext(agent_id=agent.agent_id, task_id="hello-001")
     print(f"\n[task] {task}")

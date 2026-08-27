@@ -1,6 +1,6 @@
 # Copyright (c) 2026 SPHARX. All Rights Reserved.
 """
-AgentRT OpenLab: Agent Installer Core
+AgentRT Airymax: Agent Installer Core
 
 Handles the agent installation lifecycle:
   1. Resolve agent source (local file, URL, git, market registry)
@@ -8,7 +8,7 @@ Handles the agent installation lifecycle:
   3. Call market_d via MarketClient for registration/installation
   4. Extract and deploy agent files
 
-Implements the flow: agentrt install → OpenLab Markets → market_d → install
+Implements the flow: agentrt install → Airymax Marketplace → market_d → install
 """
 
 from __future__ import annotations
@@ -144,7 +144,7 @@ class AgentInstaller:
         """Install an agent from the market registry via market_d.
 
         This implements the full flow:
-          agentrt install community/xxx → OpenLab Markets → market_d → install
+          agentrt install community/xxx → Airymax Marketplace → market_d → install
 
         Args:
             agent_id: The agent identifier (e.g., "community/code-review").
@@ -450,7 +450,7 @@ class AgentInstaller:
         Supports:
           - "community/code-review" → "code-review"
           - "code-review" → "code-review"
-          - "openlab/code-review" → "openlab/code-review"
+          - "airymax/code-review" → "airymax/code-review"
         """
         if "/" in agent_id:
             parts = agent_id.split("/", 1)

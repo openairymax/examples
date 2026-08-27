@@ -1,6 +1,6 @@
 # Copyright (c) 2026 SPHARX. All Rights Reserved.
 """
-AgentRT OpenLab: Market Client
+AgentRT Airymax: Market Client
 
 Python client for communicating with the market_d daemon via JSON-RPC 2.0
 over Unix domain socket (default) or TCP.

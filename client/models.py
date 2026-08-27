@@ -1,6 +1,6 @@
 # Copyright (c) 2026 SPHARX. All Rights Reserved.
 """
-AgentRT OpenLab: Market Models
+AgentRT Airymax: Market Models
 
 Python dataclass mappings for market_d C structures defined in
 agentrt/daemons/market_d/include/market_service.h.

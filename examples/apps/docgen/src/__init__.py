@@ -1,1 +1,1 @@
-# ecosystem/openlab/app/docgen/src  package
+# ecosystem/markets/examples/apps/docgen/src  package

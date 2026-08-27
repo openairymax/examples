@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# AgentRT OpenLab: videoedit application launcher
+# AgentRT Airymax: videoedit application launcher
 # Usage: ./run.sh [options]
 #
 # Copyright (c) 2026 SPHARX. All Rights Reserved.

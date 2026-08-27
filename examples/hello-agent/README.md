@@ -1,6 +1,6 @@
 # hello-agent — 5 分钟快速上手
 
-最小可运行示例：创建 openlab `AgentContext`，实例化 `airymax_agents` 的
+最小可运行示例：创建 Airymax `AgentContext`，实例化 `airymax_agents` 的
 `CodingAgent`，分配一个简单编码任务并打印执行结果。
 
 ## 运行
@@ -44,7 +44,7 @@ success: True
 
 ## 代码说明
 
-- `AgentContext(agent_id=..., task_id=...)` — openlab 执行上下文
+- `AgentContext(agent_id=..., task_id=...)` — Airymax 执行上下文
 - `get_agent("coding")` — 从 `airymax_agents.AGENT_REGISTRY` 实例化
   `CodingAgent`（等价于 `CodingAgent()`）
 - `await agent.execute(task, ctx)` — 执行任务，返回 `TaskResult`

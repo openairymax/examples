@@ -5,7 +5,7 @@
 Agent Installer CLI
 ===================
 
-Command-line interface for managing agents in the openlab Market.
+Command-line interface for managing agents in the Airymax Marketplace.
 This module provides a user-friendly CLI for installing, uninstalling,
 listing, and managing agents.
 
@@ -72,7 +72,7 @@ class AgentCLI:
     Command-line interface for agent management.
 
     This class provides a comprehensive CLI for managing agents
-    in the openlab Market, with support for multiple output formats
+    in the Airymax Marketplace, with support for multiple output formats
     and interactive features.
     """
 
@@ -582,7 +582,7 @@ def create_parser() -> argparse.ArgumentParser:
         Configured argument parser.
     """
     parser = argparse.ArgumentParser(
-        description="openlab Agent Management CLI",
+        description="Airymax Agent Management CLI",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
@@ -598,7 +598,7 @@ Examples:
     # Global options
     parser.add_argument(
         "--install-root",
-        help="Root directory for agent installations (default: ~/.openlab/agents)"
+        help="Root directory for agent installations (default: ~/.airymaxrt/agents)"
     )
     parser.add_argument(
         "--format",

@@ -5,7 +5,7 @@
 Documentation Generator Main Entry Point
 ========================================
 
-This module provides the main entry point for the openlab Documentation Generator.
+This module provides the main entry point for the Airymax Documentation Generator.
 It handles command-line argument parsing, configuration loading, and orchestrates
 the documentation generation process.
 
@@ -373,7 +373,7 @@ def create_parser() -> argparse.ArgumentParser:
         Configured argument parser.
     """
     parser = argparse.ArgumentParser(
-        description="openlab Documentation Generator",
+        description="Airymax Documentation Generator",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
@@ -416,7 +416,7 @@ Configuration File Format:
     parser.add_argument(
         "--version",
         action="version",
-        version="openlab Documentation Generator 1.0.0"
+        version="Airymax Documentation Generator 1.0.0"
     )
     
     return parser

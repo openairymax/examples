@@ -27,8 +27,8 @@ client/
   仓库内分发包契约与权威 Schema 的偏差：
 
   ```bash
-  python -m ecosystem.openlab.markets.client.contract_audit [--report]
-  python -m ecosystem.openlab.markets.client.contract_audit --fix
+  python -m markets.client.contract_audit [--report]
+  python -m markets.client.contract_audit --fix
   ```
 
   `--report` 输出偏差报告，`--fix` 自动修复可机械纠正的字段；

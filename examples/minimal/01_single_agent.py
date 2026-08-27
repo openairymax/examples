@@ -4,7 +4,7 @@
 
 运行方式::
 
-    cd airymaxhub/ecosystem/openlab
+    cd airymaxhub/ecosystem/agents
     python3 examples/minimal/01_single_agent.py
 
 无需任何配置即可跑通 (Mock 模式自动启用)。
@@ -16,7 +16,7 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-# 确保 openlab 包可导入 (开发模式)
+# 确保 orchestration 包可导入 (开发模式)
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from orchestration.core.agent import AgentContext

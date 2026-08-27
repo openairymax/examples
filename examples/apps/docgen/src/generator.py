@@ -119,7 +119,7 @@ class GenerationResult:
 
 class DocumentationGenerator:
     """
-    Core documentation generator for openlab projects.
+    Core documentation generator for Airymax projects.
 
     This class handles the complete documentation generation process,
     including file discovery, parsing, template rendering, and output
@@ -232,7 +232,7 @@ class DocumentationGenerator:
         self.cache_ttl = self.manager.get("cache_ttl", 3600)
 
         if self.cache_enabled:
-            self.cache_dir = Path(tempfile.gettempdir()) /                 "openlab_docgen_cache"
+            self.cache_dir = Path(tempfile.gettempdir()) /                 "airymax_docgen_cache"
             self.cache_dir.mkdir(parents=True, exist_ok=True)
             self.logger.info(f"Cache directory: {self.cache_dir}")
         else:
@@ -1105,7 +1105,7 @@ async def main():
     import argparse
 
     parser = argparse.ArgumentParser(
-        description="openlab Documentation Generator"
+        description="Airymax Documentation Generator"
     )
     parser.add_argument(
         "manager",

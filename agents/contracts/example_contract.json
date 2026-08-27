@@ -1,5 +1,5 @@
 {
-  "agent_id": "architect-agent",
+  "agent_id": "architect_v1",
   "agent_type": "architect",
   "version": "1.0.0",
   "capabilities": [
@@ -35,7 +35,7 @@
     },
     "required": ["llm_provider"]
   },
-  "entry_point": "openlab.agents.architect.agent:ArchitectAgent",
+  "entry_point": "airymax_agents.architect.agent:ArchitectAgent",
   "dependencies": [
     {
       "name": "openai",

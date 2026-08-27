@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Agent Contract Schema",
-  "description": "Schema for validating Agent contracts in openlab Market",
+  "title": "Agent Package Metadata Schema",
+  "description": "Schema for validating Agent distributable package metadata in the Airymax marketplace. This schema governs only the distribution/install layer (entry point, config schema, dependencies, resources). The runtime capability contract of an Agent (agent_id, role, capabilities with input/output schema, models, required_permissions, cost_profile, trust_metrics) is governed by the authoritative Airymax Agent Contract schema: ecosystem/agents/shared/contracts/agent.schema.json (v1.0.0).",
   "type": "object",
   "required": [
     "agent_id",
@@ -15,24 +15,26 @@
   "properties": {
     "agent_id": {
       "type": "string",
-      "description": "Unique identifier for the agent",
-      "pattern": "^[a-z0-9-]+$",
+      "description": "Unique identifier for the agent (must match the agent_id in the runtime contract)",
+      "pattern": "^[a-z0-9_]+_v[0-9]+$",
       "minLength": 3,
       "maxLength": 100
     },
     "agent_type": {
       "type": "string",
-      "description": "Semantic type of the agent",
+      "description": "Semantic role of the agent; aligned with ecosystem/agents/airymax_agents AGENT_REGISTRY roles",
       "enum": [
+        "product_manager",
         "architect",
         "backend",
         "frontend",
         "devops",
         "security",
         "tester",
-        "product_manager",
-        "data_analyst",
-        "researcher",
+        "coding",
+        "data_engineer",
+        "reviewer",
+        "analyst",
         "custom"
       ]
     },
