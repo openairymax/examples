@@ -22,7 +22,11 @@
 #   $AIRY_HOME/config/maths-toolkit.yaml 工具包注册信息
 # ============================================================================
 
-set -u
+# 失败即退：venv 创建/pip 依赖/后端部署任一失败必须向主安装器返回非零
+# （2026-08-29 生产验证教训：此前仅 set -u，pip install 失败后脚本继续
+# 执行并打印 [OK] 返回 0，主安装器误报"maths-toolkit 安装完成"，实际
+# venv/依赖缺失导致 maths_d 无法启动）。
+set -eu
 
 AIRY_HOME="${AIRY_HOME:-$HOME/.airymaxrt}"
 WITH_EINSTEINPY=0
