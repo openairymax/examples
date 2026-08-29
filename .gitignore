@@ -26,6 +26,10 @@ dist/
 build/
 wheels/
 *.whl
+# maths-toolkit 离线 wheel 是发布必需资产（0.1.6 起随包分发，
+# 断网/弱网安装符号计算保底），例外放行入库。
+!tools/maths-toolkit/wheels/
+!tools/maths-toolkit/wheels/*.whl
 
 # ---------- 测试与覆盖率 ----------
 .pytest_cache/

@@ -12,6 +12,12 @@
 #     不重复创建多环境，避免空间浪费）。
 #   - 默认不安装 einsteinpy（相对论计算需求可加 --with-einsteinpy）。
 #   - maths_d 是调用本工具包的用户态服务；本包负责 Python 依赖与后端脚本部署。
+#   - 依赖安装三级策略（2026-08-29 社区反馈 0.1.5a 数学库联网安装失败）：
+#       1) 离线优先：包内 wheels/ 自带纯 Python wheel（sympy+mpmath），
+#          --no-index 免网络，断网/弱网环境符号计算仍可用；
+#       2) 在线回退：清华 PyPI 镜像（AIRY_PIP_INDEX 可覆盖）；
+#       3) mcp-mathematics/einsteinpy 仅增强，在线失败不阻断
+#          （maths_backend.py 内置单位换算兜底表降级）。
 #
 # 用法：
 #   sh install.sh [--airy-home <path>] [--with-einsteinpy] [--uninstall]
@@ -79,20 +85,46 @@ fi
 PYTHON_BIN="$VENV_DIR/bin/python3"
 PIP_BIN="$VENV_DIR/bin/pip"
 
-# ─── 安装 Python 依赖（跳过 einsteinpy，节省空间；清华源镜像） ──────────
-# 优先使用清华 PyPI 镜像（国内网络稳定），可通过 AIRY_PIP_INDEX 覆盖。
+# ─── 安装 Python 依赖（离线 wheel 优先 → 在线镜像回退） ────────────────
+# 2026-08-29 生产教训：社区 0.1.5a 安装时 pip 联网失败导致 sympy 缺失，
+# maths_d 符号层不可用。三级策略见文件头设计决策。
 PIP_INDEX="${AIRY_PIP_INDEX:-https://pypi.tuna.tsinghua.edu.cn/simple}"
-PIP_OPTS="--quiet --upgrade -i $PIP_INDEX"
+WHEELS_DIR="${AIRY_WHEELS_DIR:-$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)/wheels}"
 
-echo "[INFO] 安装数学计算依赖（sympy + mcp-mathematics，镜像: $PIP_INDEX）..."
-"$PIP_BIN" install $PIP_OPTS sympy mcp-mathematics
-if [ $? -ne 0 ]; then
-    echo "[FAIL] pip 安装失败（网络或依赖问题）"
-    exit 1
+# ── 1) sympy（符号计算核心）：离线 wheel 优先，免网络保底 ──
+SYMPY_INSTALLED=0
+if [ -d "$WHEELS_DIR" ] && ls "$WHEELS_DIR"/*.whl >/dev/null 2>&1; then
+    echo "[INFO] 离线安装 sympy（包内 wheel，免网络）..."
+    if "$PIP_BIN" install --quiet --no-index --find-links "$WHEELS_DIR" sympy mpmath; then
+        SYMPY_INSTALLED=1
+        echo "[ OK ] 离线安装成功（sympy + mpmath）"
+    else
+        echo "[WARN] 离线 wheel 安装失败，回退在线安装"
+    fi
+fi
+if [ "$SYMPY_INSTALLED" = "0" ]; then
+    echo "[INFO] 在线安装 sympy（镜像: $PIP_INDEX）..."
+    if ! "$PIP_BIN" install --quiet --upgrade -i "$PIP_INDEX" sympy; then
+        echo "[FAIL] sympy 安装失败（离线与在线均不可用），数学符号计算不可用"
+        exit 1
+    fi
+fi
+
+# ── 2) 自动检索更新 + 在线增强（mcp-mathematics / einsteinpy） ─────────
+# 2026-08-29 社区诉求"安装后自动检索更新，更新失败功能不缺失"：
+# 数值/单位/金融增强（mcp-mathematics）与 sympy 版本更新在此统一完成；
+# 在线失败仅降级警告（maths_backend.py 内置单位兜底表），保留离线已装
+# 版本，功能不缺失。
+echo "[INFO] 自动检索在线更新（mcp-mathematics + 组件最新版，失败不影响已装版本）..."
+if ! "$PIP_BIN" install --quiet --upgrade --timeout 10 --retries 1 -i "$PIP_INDEX" mcp-mathematics \
+        ${SYMPY_INSTALLED:+sympy}; then
+    echo "[WARN] 在线更新不可用（断网/镜像超时），保留已装版本，功能不受影响"
 fi
 if [ "$WITH_EINSTEINPY" = "1" ]; then
     echo "[INFO] 安装 einsteinpy（广义相对论计算）..."
-    "$PIP_BIN" install $PIP_OPTS einsteinpy
+    if ! "$PIP_BIN" install --quiet --upgrade --timeout 10 --retries 1 -i "$PIP_INDEX" einsteinpy; then
+        echo "[WARN] einsteinpy 安装失败（可选功能，跳过）"
+    fi
 fi
 
 # ─── 部署后端 worker ─────────────────────────────────────────────────────
