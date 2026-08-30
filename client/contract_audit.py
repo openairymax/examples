@@ -6,7 +6,10 @@ Audits Airymax Marketplace API endpoints against market_service.h definitions
 to ensure field names, data types, and error codes are consistent across
 the C daemon and Python client layers.
 
-Usage:
+Usage (standalone leaf repo):
+    python -m markets.client.contract_audit [--report]
+    python -m markets.client.contract_audit --fix
+Usage (aggregate umbrella checkout):
     python -m ecosystem.markets.client.contract_audit [--report]
     python -m ecosystem.markets.client.contract_audit --fix
 """
