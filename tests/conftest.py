@@ -13,6 +13,9 @@ import sys
 import os
 from typing import Any, Dict
 
+# 禁止写入 .pyc 字节码缓存，根治源码区 __pycache__ 污染
+sys.dont_write_bytecode = True
+
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
