@@ -9,7 +9,7 @@ Plugin Manifest Validator (0.1.6 P1-5 插件机制子集：组件声明即校验
 消费 manager/schema/plugin-manifest.schema.json 对插件 manifest.yaml
 做离线校验（纯本地，无需网络/AgentRT 运行时），随 market 包分发。
 
-与 plugin_d/plugin_discovery.c 的必填字段校验（name/library/type/
+与 tool_d/plugin_discovery.c 的必填字段校验（name/library/type/
 api_version/min_airy_version）对齐（S-4：schema 是权威，运行时约束一致）。
 
 用法：

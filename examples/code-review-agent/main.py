@@ -11,7 +11,7 @@
     python3 main.py path/to/dir      # 递归审查目录下所有源码文件
 
 执行链路（两级降级）：
-1. agentrt SDK 链路：当前 SDK 尚无 plugin 客户端（plugin_d 未开放），
+1. agentrt SDK 链路：当前 SDK 尚无 plugin 客户端（插件执行域已并入 tool_d），
    此处尝试经 ``SyscallProxy.skill_execute`` 调用 code_review 技能
    （FFI 后端需 libagentrt.so；IPC 后端暂未实现 skill_execute），
    不可用时自动降级到本地执行。
