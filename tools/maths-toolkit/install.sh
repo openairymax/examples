@@ -59,7 +59,7 @@ if [ "$UNINSTALL" = "1" ]; then
     echo "[INFO] 卸载 maths-toolkit..."
     rm -f "$BACKEND_DST" "$REG_FILE"
     # 保留共享 venv（其他组件可能共用），仅提示
-    echo "[ OK ] maths-toolkit 已卸载（共享 venv 保留：$VENV_DIR）"
+    echo "[ OK ] maths-toolkit 已卸载（共享 venv 保留：${VENV_DIR}）"
     exit 0
 fi
 
@@ -103,7 +103,7 @@ if [ -d "$WHEELS_DIR" ] && ls "$WHEELS_DIR"/*.whl >/dev/null 2>&1; then
     fi
 fi
 if [ "$SYMPY_INSTALLED" = "0" ]; then
-    echo "[INFO] 在线安装 sympy（镜像: $PIP_INDEX）..."
+    echo "[INFO] 在线安装 sympy（镜像: ${PIP_INDEX}）..."
     if ! "$PIP_BIN" install --quiet --upgrade -i "$PIP_INDEX" sympy; then
         echo "[FAIL] sympy 安装失败（离线与在线均不可用），数学符号计算不可用"
         exit 1
