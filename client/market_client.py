@@ -62,7 +62,7 @@ def _resolve_default_socket_path() -> str:
     return _DEFAULT_SOCKET_PATH
 
 _DEFAULT_TCP_HOST = "127.0.0.1"
-_DEFAULT_TCP_PORT = 8082
+_DEFAULT_TCP_PORT = 2034  # AIRY_PORT_MARKET_D（SSoT airy_defaults.h）
 _DEFAULT_TIMEOUT = 10.0
 _MAX_BUFFER = 65536
 
