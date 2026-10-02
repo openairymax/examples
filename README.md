@@ -31,6 +31,18 @@ packages them (plus third-party-style add-ons) into installable artifacts. The r
 
 ```
 markets/
+├── agents/                       # Agent package contracts & installer library
+│   ├── contracts/                # Package contract schema & validator
+│   └── installer/                # Install core & CLI
+├── client/                       # Python client for the market_d daemon (JSON-RPC)
+│   ├── market_client.py          # Facade entry (re-exported by __init__.py)
+│   ├── models.py                 # Data models
+│   ├── errors.py                 # Error hierarchy
+│   └── contract_audit.py         # Contract consistency audit
+├── plugins/                      # Plugin extensions (manifest validator)
+├── templates/                    # Scaffolding templates for new packages (docs)
+│   ├── python-agent/
+│   └── rust-skill/
 ├── tools/                        # Tool packages (installable computation backends)
 │   └── maths-toolkit/            # Maths computation backend (SymPy + MCP-Mathematics)
 │       ├── package.yaml          # Package metadata (SSoT for install & registry)
@@ -38,11 +50,19 @@ markets/
 │       ├── backend/              # Python stdio JSON-RPC worker
 │       │   └── maths_backend.py
 │       └── skills/maths.yaml     # Optional usage guidance for the runtime
-├── examples/                     # Reference example agents (run with AgentRT CLI)
+├── examples/                     # Reference examples (python3 main.py)
 │   ├── hello-agent/
 │   ├── code-review-agent/
-│   └── research-agent/
-├── .gitignore
+│   ├── research-agent/
+│   ├── minimal/                  # Minimal script examples
+│   └── apps/                     # Application-level example packages
+│       ├── docgen/
+│       ├── ecommerce/
+│       ├── videoedit/
+│       └── research/             # Planned (design doc only)
+├── tests/                        # Ecosystem Python tests (pytest)
+├── pytest.ini                    # Test config (-p no:cacheprovider)
+├── __init__.py                   # Package-chain root for pytest prepend imports
 └── README.md                     # This file
 ```
 
@@ -79,8 +99,13 @@ cd tools/maths-toolkit
 
 ```bash
 cd examples/hello-agent
-agentrt run --config config.yaml
+python3 main.py
 ```
+
+Without an API key the example runs in offline Mock mode; set
+`OPENAI_API_KEY` to switch to a real LLM. Optionally use `AIRY_USE_IPC=1`
+to attach the agentrt daemons (`mem_d` / `agent_d` / `tool_d`). See
+examples/hello-agent/README.md.
 
 ## Relationship to the Ecosystem
 

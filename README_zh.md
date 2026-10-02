@@ -28,6 +28,18 @@
 
 ```
 markets/
+├── agents/                       # Agent 包契约与安装器库
+│   ├── contracts/                # 包契约 Schema 与校验器
+│   └── installer/                # 安装核心与 CLI
+├── client/                       # market_d 的 Python 客户端（JSON-RPC）
+│   ├── market_client.py          # Facade 入口（由 __init__.py 重导出）
+│   ├── models.py                 # 数据模型
+│   ├── errors.py                 # 错误体系
+│   └── contract_audit.py         # 契约一致性审计
+├── plugins/                      # 插件扩展（清单校验器）
+├── templates/                    # 新包脚手架模板（文档形态）
+│   ├── python-agent/
+│   └── rust-skill/
 ├── tools/                        # 工具包（可安装的计算后端）
 │   └── maths-toolkit/            # 数学计算后端（SymPy + MCP-Mathematics）
 │       ├── package.yaml          # 包元数据（安装与注册的唯一权威源）
@@ -35,11 +47,19 @@ markets/
 │       ├── backend/              # Python stdio JSON-RPC worker
 │       │   └── maths_backend.py
 │       └── skills/maths.yaml     # 可选的运行时使用指南
-├── examples/                     # 参考示例 Agent（用 AgentRT CLI 运行）
+├── examples/                     # 参考示例（python3 main.py 运行）
 │   ├── hello-agent/
 │   ├── code-review-agent/
-│   └── research-agent/
-├── .gitignore
+│   ├── research-agent/
+│   ├── minimal/                  # 最小脚本示例
+│   └── apps/                     # 应用级示例包
+│       ├── docgen/
+│       ├── ecommerce/
+│       ├── videoedit/
+│       └── research/             # 规划中（当前仅设计文档）
+├── tests/                        # 生态 Python 测试（pytest）
+├── pytest.ini                    # 测试配置（-p no:cacheprovider）
+├── __init__.py                   # 包链根：pytest prepend 导入解析机制
 └── README.md                     # 本文件
 ```
 
@@ -75,8 +95,12 @@ cd tools/maths-toolkit
 
 ```bash
 cd examples/hello-agent
-agentrt run --config config.yaml
+python3 main.py
 ```
+
+未检测到 API key 时自动启用离线 Mock 模式；设置 `OPENAI_API_KEY` 即切换
+真实 LLM。可选 `AIRY_USE_IPC=1` 接入 agentrt 守护进程（`mem_d` / `agent_d` /
+`tool_d`），详见 examples/hello-agent/README.md。
 
 ## 与生态的关系
 
