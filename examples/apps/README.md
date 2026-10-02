@@ -7,7 +7,7 @@
 
 ## 概述
 
-Applications 是 Airymax 生态系统中的官方智能应用集合，涵盖文档生成、电商运营、学术研究和视频编辑四大领域。所有应用基于 AgentRT 平台开发，使用统一的 JSON-RPC 2.0 协议与后端服务通信，可独立部署和扩展。
+Applications 是 Airymax 生态系统中的官方智能应用集合，涵盖文档生成、电商运营和视频编辑三大领域。所有应用基于 AgentRT 平台开发，使用统一的 JSON-RPC 2.0 协议与后端服务通信，可独立部署和扩展。
 
 ## 目录结构
 
@@ -34,8 +34,6 @@ app/
 │   ├── manifest.json           # 应用清单
 │   ├── run.sh                  # 启动脚本
 │   └── README.md
-├── research/                   # 研究助手应用（规划阶段）
-│   └── README.md
 ├── videoedit/                  # 视频编辑应用
 │   ├── src/
 │   │   ├── __init__.py
@@ -55,7 +53,6 @@ app/
 |------|------|--------|------|------|
 | **DocGen** | `docgen/` | Jinja2, Markdown, PyYAML | 智能文档生成，支持多格式输出和文件监听 | 已实现 |
 | **E-Commerce** | `ecommerce/` | FastAPI, Stripe, JWT, Redis | 智能电商助手，支持支付/订单/库存管理 | 骨架实现 |
-| **Research** | `research/` | — | 智能研究助手，支持文献检索和数据分析 | 规划阶段 |
 | **VideoEdit** | `videoedit/` | FastAPI, FFmpeg, OpenCV | 智能视频编辑，支持剪辑/合并/特效/字幕 | 已实现 |
 
 ## 应用架构
@@ -64,17 +61,17 @@ app/
 +-----------------------------------------------------------+
 |                    Applications Layer                       |
 +-----------------------------------------------------------+
-|  DocGen        | E-Commerce    | Research  | VideoEdit     |
-|  ┌───────────┐ | ┌───────────┐ | ┌──────┐ | ┌───────────┐ |
-|  │Generator  │ | │FastAPI    │ | │      │ | │FastAPI    │ |
-|  │  Engine   │ | │  Server   │ | │      │ | │  Server   │ |
-|  ├───────────┤ | ├───────────┤ | │      │ | ├───────────┤ |
-|  │Jinja2     │ | │Stripe     │ | │      │ | │FFmpeg     │ |
-|  │Templates  │ | │Payment    │ | │      │ | │Pipeline   │ |
-|  ├───────────┤ | ├───────────┤ | │      │ | ├───────────┤ |
-|  │Markdown   │ | │JWT Auth   │ | │      │ | │OpenCV     │ |
-|  │Rendering  │ | │Security   │ | │      │ | │Processing │ |
-|  └───────────┘ | └───────────┘ | └──────┘ | └───────────┘ |
+|  DocGen            | E-Commerce       | VideoEdit         |
+|  ┌───────────┐     | ┌───────────┐     | ┌───────────┐     |
+|  │Generator  │     | │FastAPI    │     | │FastAPI    │     |
+|  │  Engine   │     | │  Server   │     | │  Server   │     |
+|  ├───────────┤     | ├───────────┤     | ├───────────┤     |
+|  │Jinja2     │     | │Stripe     │     | │FFmpeg     │     |
+|  │Templates  │     | │Payment    │     | │Pipeline   │     |
+|  ├───────────┤     | ├───────────┤     | ├───────────┤     |
+|  │Markdown   │     | │JWT Auth   │     | │OpenCV     │     |
+|  │Rendering  │     | │Security   │     | │Processing │     |
+|  └───────────┘     | └───────────┘     | └───────────┘     |
 +-----------------------------------------------------------+
 |              AgentRT Core Runtime (JSON-RPC 2.0)           |
 +-----------------------------------------------------------+
@@ -95,7 +92,6 @@ app/
 |------|----------|----------|
 | DocGen | Jinja2, Markdown, PyYAML | WeasyPrint (PDF), Watchdog (文件监听) |
 | E-Commerce | FastAPI, Stripe, SQLAlchemy, Redis | psycopg2 (PostgreSQL), PyMySQL |
-| Research | — | — |
 | VideoEdit | FastAPI, FFmpeg, PyYAML | OpenCV, MoviePy, Pillow |
 
 ---

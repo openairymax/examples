@@ -58,8 +58,7 @@ markets/
 │   └── apps/                     # Application-level example packages
 │       ├── docgen/
 │       ├── ecommerce/
-│       ├── videoedit/
-│       └── research/             # Planned (design doc only)
+│       └── videoedit/
 ├── tests/                        # Ecosystem Python tests (pytest)
 ├── pytest.ini                    # Test config (-p no:cacheprovider)
 ├── __init__.py                   # Package-chain root for pytest prepend imports

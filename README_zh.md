@@ -55,8 +55,7 @@ markets/
 │   └── apps/                     # 应用级示例包
 │       ├── docgen/
 │       ├── ecommerce/
-│       ├── videoedit/
-│       └── research/             # 规划中（当前仅设计文档）
+│       └── videoedit/
 ├── tests/                        # 生态 Python 测试（pytest）
 ├── pytest.ini                    # 测试配置（-p no:cacheprovider）
 ├── __init__.py                   # 包链根：pytest prepend 导入解析机制
