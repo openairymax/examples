@@ -136,8 +136,12 @@ class ContractAuditor:
         "register_agent",
         "search_agents",
         "install_agent",
+        "uninstall_agent",
         "register_skill",
         "search_skills",
+        "uninstall_skill",
+        "check_update",
+        "sync_registry",
         "health_check",
     }
 
@@ -219,8 +223,9 @@ class ContractAuditor:
             }
             # Filter to actual RPC-calling methods
             actual_rpc = {
-                "register_agent", "search_agents", "install_agent",
-                "register_skill", "search_skills", "health_check",
+                "register_agent", "search_agents", "install_agent", "uninstall_agent",
+                "register_skill", "search_skills", "uninstall_skill", "check_update",
+                "sync_registry", "health_check",
             }
         except ImportError as e:
             report.add(AuditFinding(

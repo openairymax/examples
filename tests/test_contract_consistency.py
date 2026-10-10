@@ -277,8 +277,12 @@ class TestRPCMethodConsistency:
         "register_agent",
         "search_agents",
         "install_agent",
+        "uninstall_agent",
         "register_skill",
         "search_skills",
+        "uninstall_skill",
+        "check_update",
+        "sync_registry",
         "health_check",
     }
 

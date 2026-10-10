@@ -6,12 +6,16 @@ Python client for communicating with the market_d daemon via JSON-RPC 2.0
 over Unix domain socket (default) or TCP.
 
 Endpoints mirror market_d RPC methods:
-  - register_agent  → POST /api/v1/market/register (agent)
-  - search_agents   → GET  /api/v1/market/search (agents)
-  - install_agent    → POST /api/v1/market/install (agent)
-  - register_skill  → POST /api/v1/market/register (skill)
-  - search_skills   → GET  /api/v1/market/search (skills)
-  - health_check    → GET  /api/v1/market/health
+  - register_agent   → register an agent
+  - search_agents    → search agents
+  - install_agent    → install an agent
+  - uninstall_agent  → uninstall an agent
+  - register_skill   → register a skill
+  - search_skills    → search skills
+  - uninstall_skill  → uninstall a skill
+  - check_update     → check for a newer version
+  - sync_registry    → sync with the remote registry
+  - health_check     → daemon health probe
 
 Protocol: JSON-RPC 2.0 over Unix socket or TCP.
 See market_service.h and market_d/src/main.c for the C-side definitions.
@@ -311,6 +315,32 @@ class MarketClient:
             )
         return InstallResult(success=False, message="Unexpected response format")
 
+    def uninstall_agent(self, agent_id: str) -> bool:
+        """Uninstall an agent from the market.
+
+        Corresponds to market_service_uninstall_agent() in market_service.h
+        and handle_uninstall_agent() in market_rpc.c.
+
+        Args:
+            agent_id: ID of the agent to uninstall.
+
+        Returns:
+            True if the agent was uninstalled.
+
+        Raises:
+            MarketValidationError: Missing agent_id.
+            MarketNotFoundError: Agent not registered/installed.
+            MarketConnectionError: Daemon not accessible.
+        """
+        if not agent_id:
+            raise market_error_from_code(
+                -32602,
+                message="agent_id is required for uninstallation",
+            )
+
+        result = self._call("uninstall_agent", {"agent_id": agent_id})
+        return isinstance(result, dict) and result.get("status") == "uninstalled"
+
     # ── Skill Operations ──
 
     def register_skill(self, skill: SkillInfo) -> bool:
@@ -356,6 +386,75 @@ class MarketClient:
         if isinstance(result, list):
             return [SkillInfo.from_json(item) for item in result]
         return []
+
+    def uninstall_skill(self, skill_id: str) -> bool:
+        """Uninstall a skill from the market.
+
+        Corresponds to market_service_uninstall_skill() in market_service.h
+        and handle_uninstall_skill() in market_rpc.c.
+
+        Args:
+            skill_id: ID of the skill to uninstall.
+
+        Returns:
+            True if the skill was uninstalled.
+
+        Raises:
+            MarketValidationError: Missing skill_id.
+            MarketNotFoundError: Skill not registered.
+            MarketConnectionError: Daemon not accessible.
+        """
+        if not skill_id:
+            raise market_error_from_code(
+                -32602,
+                message="skill_id is required for uninstallation",
+            )
+
+        result = self._call("uninstall_skill", {"skill_id": skill_id})
+        return isinstance(result, dict) and result.get("status") == "uninstalled"
+
+    # ── Update & Sync ──
+
+    def check_update(self, resource_id: str) -> Dict[str, Any]:
+        """Check whether a newer version of an agent or skill is available.
+
+        Corresponds to market_service_check_update() in market_service.h
+        and handle_check_update() in market_rpc.c.
+
+        Args:
+            resource_id: Agent or skill ID to check.
+
+        Returns:
+            Dict with ``id``, ``has_update`` and optional ``latest_version``.
+
+        Raises:
+            MarketValidationError: Missing resource_id.
+            MarketNotFoundError: ID not found in the registry.
+            MarketConnectionError: Daemon not accessible.
+        """
+        if not resource_id:
+            raise market_error_from_code(
+                -32602,
+                message="id is required for update check",
+            )
+
+        result = self._call("check_update", {"id": resource_id})
+        return result if isinstance(result, dict) else {"has_update": False}
+
+    def sync_registry(self) -> bool:
+        """Synchronize the local index with the remote registry.
+
+        Corresponds to market_service_sync_registry() in market_service.h
+        and handle_sync_registry() in market_rpc.c.
+
+        Returns:
+            True if the sync completed.
+
+        Raises:
+            MarketConnectionError: Daemon not accessible.
+        """
+        result = self._call("sync_registry", {})
+        return isinstance(result, dict) and result.get("status") == "synced"
 
     # ── Health Check ──
 
